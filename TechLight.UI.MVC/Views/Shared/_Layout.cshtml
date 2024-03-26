@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>UpConstruction Bootstrap Template - Index</title>
+    <title>@ViewData["Title"] | TechLight</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -41,7 +41,7 @@
 <body>
 
     <!-- ======= Header ======= -->
-    <header id="header" class="header d-flex align-items-center">
+    <header id="header" class="header d-flex align-items-center bg bg-dark-subtle">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
             <a href="@Url.Action("Index", "Home")" class="logo d-flex align-items-center">
@@ -77,7 +77,21 @@
                             <li><a href="#">Dropdown 3</a></li>
                             <li><a href="#">Dropdown 4</a></li>
                         </ul>
-                    </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Admin <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-action="ListUsers" asp-controller="Administration">Users</a></li>
+                                <li><a asp-action="ListRoles" asp-controller="Administration">Roles</a></li>
+                                <li><a asp-action="Index" asp-controller="Orders">Orders</a></li>
+                                <li><a asp-action="Index" asp-controller="Categories">Categories</a></li>
+                                <li><a asp-action="Index" asp-controller="Traders">Traders</a></li>
+                                <li><a asp-action="Index" asp-controller="ProductOrders">Product Orders</a></li>
+                                <li><a asp-action="Index" asp-controller="Status">Status</a></li>
+                                <li><a asp-action="Index" asp-controller="RaidStatus">Raid Status</a></li>
+                            </ul>
+                        </li>
+                    
+
                     <li><a href="contact.html">Contact</a></li>
                     <partial name="_LoginPartial" />
                 </ul>
@@ -85,42 +99,13 @@
 
         </div>
     </header><!-- End Header -->
-    <!-- ======= Hero Section ======= -->
-    <section id="hero" class="hero">
 
-        <div class="info d-flex align-items-center">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 text-center">
-                        <h2 data-aos="fade-down">Welcome to <span>UpConstruction</span></h2>
-                        <p data-aos="fade-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <a data-aos="fade-up" data-aos-delay="200" href="#get-started" class="btn-get-started">Get Started</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    @RenderSection("section", false)
 
-        <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-
-            <div class="carousel-item active" style="background-image: url(../assets/img/hero-carousel/hero-carousel-1.jpg)"></div>
-            <div class="carousel-item" style="background-image: url(../assets/img/hero-carousel/hero-carousel-2.jpg)"></div>
-            <div class="carousel-item" style="background-image: url(../assets/img/hero-carousel/hero-carousel-3.jpg)"></div>
-            <div class="carousel-item" style="background-image: url(../assets/img/hero-carousel/hero-carousel-4.jpg)"></div>
-            <div class="carousel-item" style="background-image: url(../assets/img/hero-carousel/hero-carousel-5.jpg)"></div>
-
-            <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-            </a>
-
-            <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-            </a>
-
-        </div>
-
-    </section><!-- End Hero Section -->
-
+    <div class="container" style="padding-top: 150px;">
         @RenderBody()
+    </div>
+        
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
 

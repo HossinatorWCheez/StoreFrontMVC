@@ -1,0 +1,34 @@
+﻿@model IEnumerable<TechLight.DATA.EF.Models.RaidStatus>
+
+@{
+    ViewData["Title"] = "Raid Status";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RaidStatusDesc)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.RaidStatusId">@Html.DisplayFor(modelItem => item.RaidStatusDesc)</a>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RaidStatusId">Edit</a> |                
+                <a asp-action="Delete" asp-route-id="@item.RaidStatusId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

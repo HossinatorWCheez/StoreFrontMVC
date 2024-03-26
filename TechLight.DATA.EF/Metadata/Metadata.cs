@@ -17,7 +17,7 @@ namespace TechLight.DATA.EF.Models
         [DataType(DataType.Text)]
         public string CategoryName { get; set; } = null!;
 
-        [StringLength(500, ErrorMessage = "Name cannot exceed 50 characters")]
+        [StringLength(500, ErrorMessage = "Name cannot exceed 500 characters")]
         [Display(Name = "Description")]
         [UIHint("MultilineText")]
         [DataType(DataType.MultilineText)]

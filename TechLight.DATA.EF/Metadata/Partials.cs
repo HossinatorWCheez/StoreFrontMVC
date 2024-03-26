@@ -28,8 +28,8 @@ namespace TechLight.DATA.EF.Models
     public partial class ProductOrder { }
 
     [ModelMetadataType(typeof(RaidStatusesMetadata))]
-    public partial class RaidStatuses { }
+    public partial class RaidStatus { }
 
     [ModelMetadataType(typeof(StatusesMetadata))]
-    public partial class Statuses { }
+    public partial class Status { }
 }
