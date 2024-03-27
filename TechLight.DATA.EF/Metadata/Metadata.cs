@@ -98,6 +98,7 @@ namespace TechLight.DATA.EF.Models
 
         [Required]
         [StringLength(100)]
+        [Display(Name = "Product Name")]
         public string ProductName { get; set; } = null!;
 
         [Required]

@@ -4,11 +4,15 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>@ViewData["Title"]</h1>
+<section class="product_section gray-section layout_padding pb-4 pt-4 mb-4 text-center">
+    <div class="heading_container heading_center">
+        <h2 class="fs-1" style="color: #feb900;">
+            Details of <span>Found In Raid</span>
+        </h2>
+    </div>
+</section>
 
-<div>
-    <h4>RaidStatus</h4>
-    <hr />
+<div class="col-md-6 offset-5">
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.RaidStatusDesc)
@@ -18,7 +22,7 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.RaidStatusId">Edit</a> |
-    <a asp-action="Index">Back to Raid Status</a>
+<div class="text-center mb-3 mt-3">
+    <a asp-action="Edit" asp-route-id="@Model?.RaidStatusId" class="btn btn-dark">Edit</a> 
+    <a asp-action="Index" class="btn btn-dark">Back to Raid Status</a>
 </div>
