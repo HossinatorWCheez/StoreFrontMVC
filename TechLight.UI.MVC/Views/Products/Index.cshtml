@@ -1,14 +1,20 @@
 ﻿@model IEnumerable<TechLight.DATA.EF.Models.Product>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Products";
 }
 
-<h1>Index</h1>
+<section class="product_section gray-section layout_padding pb-4 pt-4 mb-4">
+    <div class="heading_container heading_center">
+        <h2>
+            Our <span>Products</span>
+        </h2>
+        <p align="center" class="btn btn-success">
+            <a style="color: white" asp-action="Create">Create New</a>
+        </p>
+    </div>
+</section>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>

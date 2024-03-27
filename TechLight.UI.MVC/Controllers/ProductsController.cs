@@ -53,7 +53,7 @@ namespace TechLight.UI.MVC.Controllers
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
             ViewData["RaidStatusId"] = new SelectList(_context.RaidStatuses, "RaidStatusId", "RaidStatusDesc");
             ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusName");
-            ViewData["TraderId"] = new SelectList(_context.Traders, "TraderId", "Address");
+            ViewData["TraderId"] = new SelectList(_context.Traders, "TraderId", "TraderName");
             return View();
         }
 
@@ -73,7 +73,7 @@ namespace TechLight.UI.MVC.Controllers
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", product.CategoryId);
             ViewData["RaidStatusId"] = new SelectList(_context.RaidStatuses, "RaidStatusId", "RaidStatusDesc", product.RaidStatusId);
             ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusName", product.StatusId);
-            ViewData["TraderId"] = new SelectList(_context.Traders, "TraderId", "Address", product.TraderId);
+            ViewData["TraderId"] = new SelectList(_context.Traders, "TraderId", "TraderName", product.TraderId);
             return View(product);
         }
 
@@ -93,7 +93,7 @@ namespace TechLight.UI.MVC.Controllers
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", product.CategoryId);
             ViewData["RaidStatusId"] = new SelectList(_context.RaidStatuses, "RaidStatusId", "RaidStatusDesc", product.RaidStatusId);
             ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusName", product.StatusId);
-            ViewData["TraderId"] = new SelectList(_context.Traders, "TraderId", "Address", product.TraderId);
+            ViewData["TraderId"] = new SelectList(_context.Traders, "TraderId", "TraderName", product.TraderId);
             return View(product);
         }
 
@@ -132,7 +132,7 @@ namespace TechLight.UI.MVC.Controllers
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", product.CategoryId);
             ViewData["RaidStatusId"] = new SelectList(_context.RaidStatuses, "RaidStatusId", "RaidStatusDesc", product.RaidStatusId);
             ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusName", product.StatusId);
-            ViewData["TraderId"] = new SelectList(_context.Traders, "TraderId", "Address", product.TraderId);
+            ViewData["TraderId"] = new SelectList(_context.Traders, "TraderId", "TraderName", product.TraderId);
             return View(product);
         }
 
