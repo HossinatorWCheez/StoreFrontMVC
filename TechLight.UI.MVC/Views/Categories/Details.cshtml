@@ -1,28 +1,26 @@
 ﻿@model TechLight.DATA.EF.Models.Category
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Details " + Model.CategoryName;
 }
 
-<h1>@ViewData["Title"]</h1>
-<hr />
-<div>
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CategoryName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoryDesc)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CategoryDesc)
-        </dd>
-    </dl>
+<section class="product_section gray-section layout_padding pb-4 pt-4 mb-4 text-center">
+    <div class="heading_container heading_center">
+        <h2 class="fs-1">
+            Details of <span style="color: #feb900;">@Model.CategoryName</span>
+        </h2>
+    </div>
+</section>
+
+<div class="row col-md-8 offset-4 text-justify">
+    <p class="h5">
+        <strong>@Html.DisplayNameFor(mode => Model.CategoryName):</strong> @Html.DisplayFor(model => model.CategoryName)
+    </p>
+    <p class="h5">
+        <strong>@Html.DisplayNameFor(mode => Model.CategoryDesc):</strong> @Html.DisplayFor(model => model.CategoryDesc)
+    </p>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.CategoryId">Edit</a> |
-    <a asp-action="Index">Back to Categories</a>
+<div class="text-center mt-3 mb-3">
+    <a asp-action="Edit" asp-route-id="@Model?.CategoryId" class="btn btn-dark">Edit</a> 
+    <a asp-action="Index" class="btn btn-dark">Back to Categories</a>
 </div>

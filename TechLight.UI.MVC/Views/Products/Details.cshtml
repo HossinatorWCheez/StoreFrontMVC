@@ -1,72 +1,42 @@
 ﻿@model TechLight.DATA.EF.Models.Product
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Details " + Model.ProductName;
 }
 
-<h1>Details</h1>
+<section class="product_section gray-section layout_padding pb-4 pt-4 mb-4 text-center">
+    <div class="heading_container heading_center">
+        <h2 class="fs-1">
+            Details of <span style="color: #feb900;">@Model.ProductName</span>
+        </h2>
+    </div>
+</section>
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductDesc)
-        </dt>
-        <dd class = "col-sm-10">
+<div class="row mb-3">
+    <div class="col-md-6 text-center">
+        <img src="~/images/@Model.ProductImage" alt="@Model.ProductName" longdesc="@Model.ProductDesc" class="img-fluid" />
+        <p class="text-info mt-3">
             @Html.DisplayFor(model => model.ProductDesc)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UnitsInStock)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UnitsInStock)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductImage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductImage)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category.CategoryName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RaidStatus)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RaidStatus.RaidStatusDesc)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status.StatusName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Trader)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Trader.Address)
-        </dd>
-    </dl>
+        </p>
+    </div>
+
+    <div class="col-md-4 offset-1">
+        <p class="h5">
+            <strong>@Html.DisplayNameFor(mode => Model.Price):</strong> @Html.DisplayFor(model => model.Price)
+        </p>
+        <p class="h5">
+            <strong>@Html.DisplayNameFor(mode => Model.UnitsInStock):</strong> @Html.DisplayFor(model => model.UnitsInStock)
+        </p>
+        <p class="h5">
+            <strong>@Html.DisplayNameFor(mode => Model.Category.CategoryName):</strong> @Html.DisplayFor(model => model.Category.CategoryName)
+        </p>
+        <p class="h5">
+            <strong>@Html.DisplayNameFor(mode => Model.Trader.TraderName):</strong> @Html.DisplayFor(model => model.Trader.TraderName)
+        </p>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.ProductId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+<div class="mt-3 mb-3 text-center">
+    <a asp-action="Edit" asp-route-id="@Model.ProductId" class="btn btn-dark">Edit</a> 
+    <a asp-action="Index" class="btn btn-dark">Back to Our Products</a>
 </div>
