@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> signInManager
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -56,6 +59,10 @@
                 <ul>
                     <li><a href="@Url.Action("Index", "Home")" class="active">Home</a></li>
                     <li class="nav-item"><a class="nav-link" asp-action="Index" asp-controller="Products">Shop</a></li>
+                @if(signInManager.IsSignedIn(User) == true)
+                {
+                    <li class="nav-item"><a class="nav-link" asp-action="Index" asp-controller="Orders">Orders</a></li>
+                }
                     <li class="dropdown">
                         <a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
@@ -74,6 +81,8 @@
                             <li><a href="#">Dropdown 3</a></li>
                             <li><a href="#">Dropdown 4</a></li>
                         </ul>
+                    @if (User.IsInRole("Admin"))
+                    {
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Admin <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -86,7 +95,8 @@
                                 <li><a asp-action="Index" asp-controller="RaidStatus">Raid Status</a></li>
                             </ul>
                         </li>
-                    
+                    }
+                        
 
                     <li><a href="contact.html">Contact</a></li>
                     <partial name="_LoginPartial" />

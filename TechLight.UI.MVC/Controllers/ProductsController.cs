@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TechLight.DATA.EF.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TechLight.UI.MVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
         private readonly TechLightContext _context;
@@ -19,13 +21,30 @@ namespace TechLight.UI.MVC.Controllers
         }
 
         // GET: Products
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var techLightContext = _context.Products.Include(p => p.Category).Include(p => p.RaidStatus).Include(p => p.Status).Include(p => p.Trader);
+            var techLightContext = _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.RaidStatus)
+                .Include(p => p.Status)
+                .Include(p => p.Trader);
             return View(await techLightContext.ToListAsync());
         }
 
+        [AllowAnonymous]
+        public async Task<IActionResult> TiledProducts()
+        {
+            var products = _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.RaidStatus)
+                .Include(p => p.Status)
+                .Include(p => p.Trader);
+            return View(await products.ToListAsync());
+        }
+
         // GET: Products/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Products == null)

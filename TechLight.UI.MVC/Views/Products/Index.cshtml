@@ -9,8 +9,12 @@
         <h2 class="fs-1" style="color: #feb900;">
             Our <span>Products</span>
         </h2>
-        <p align="center" class="btn btn-dark">
-            <a style="color: white" asp-action="Create">Add Product</a>
+        <p align="center">
+            @if (User.IsInRole("Admin"))
+            {
+                <a style="color: white" asp-action="Create" class="btn btn-warning">Add Product</a>
+            }
+            <a asp-action="TiledProducts" class="btn btn-dark mx-4">Tile View</a>
         </p>
     </div>
 </section>
@@ -45,7 +49,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Trader)
             </th>
-            <th>Modifcations</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -79,7 +83,14 @@
                 @Html.DisplayFor(modelItem => item.Trader.TraderName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> | <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+            @if (User.IsInRole("Admin"))
+            {
+                <span><a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |</span> 
+                @if(item.ProductOrders.Count() == 0)
+                {    
+                    <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a> 
+                }
+            }
             </td>
         </tr>
 }

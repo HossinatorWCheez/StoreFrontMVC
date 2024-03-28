@@ -1,0 +1,41 @@
+﻿@model IEnumerable<TechLight.DATA.EF.Models.Product>
+
+@{
+    ViewData["Title"] = "TiledProducts";
+}
+
+<section class="product_section gray-section layout_padding pb-4 pt-4 mb-4 text-center">
+    <div class="heading_container heading_center">
+        <h2 class="fs-1" style="color: #feb900;">
+            Our <span>Products</span>
+        </h2>
+        <p align="center">
+            @if (User.IsInRole("Admin"))
+            {
+                <a style="color: white" asp-action="Create" class="btn btn-warning">Add Product</a>
+            }
+            <a asp-action="Index" class="btn btn-dark mx-4">Table View</a>
+        </p>
+    </div>
+</section>
+
+<section id="team" class="team">
+    <div class="container" data-aos="fade-up">
+        <div class="row gy-5">
+            @foreach (var item in Model)
+            {
+
+                <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
+                    <div class="member-img">
+                        <img src="~/assets/img/team/team-1.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="member-info text-center">
+                        <a asp-action="Details" asp-route-id="@item.ProductId"><h4>@item.ProductName</h4></a>
+                        <span>@Html.DisplayFor(modelItem => item.Price)</span>
+                        <p>@item.ProductDesc</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
