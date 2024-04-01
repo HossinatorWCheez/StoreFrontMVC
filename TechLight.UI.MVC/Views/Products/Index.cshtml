@@ -56,7 +56,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                    <img src="~/assets/img/t_@item.ProductImage" class="img-fluid" alt="@item.ProductName">
+                 <img src="~/assets/img/t_@item.ProductImage" class="img-fluid" alt="@item.ProductName">
             </td>
             <td>
                 <a asp-action="Details" asp-route-id="@item.ProductId">@Html.DisplayFor(modelItem => item.ProductName)</a>
