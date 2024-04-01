@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TechLight.DATA.EF.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Drawing;
+using TechLight.UI.MVC.Utilities;
 
 namespace TechLight.UI.MVC.Controllers
 {
@@ -14,10 +16,12 @@ namespace TechLight.UI.MVC.Controllers
     public class ProductsController : Controller
     {
         private readonly TechLightContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductsController(TechLightContext context)
+        public ProductsController(TechLightContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Products
@@ -81,10 +85,44 @@ namespace TechLight.UI.MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,ProductName,Price,ProductDesc,UnitsInStock,StatusId,CategoryId,TraderId,RaidStatusId,ProductImage")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductId,ProductName,Price,ProductDesc,UnitsInStock,StatusId,CategoryId,TraderId,RaidStatusId,ProductImage,Image")] Product product)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload - CREATE
+
+                if (product.Image != null)
+                {
+                    string ext = Path.GetExtension(product.Image.FileName);
+
+                    string[] validExts = { ".jpg", ".jpeg", ".gif", ".png" };
+
+                    if (validExts.Contains(ext.ToLower()) && product.Image.Length < 4_194_303)
+                    {
+                        product.ProductImage = Guid.NewGuid() + ext;
+
+                        string webRootPath = _webHostEnvironment.WebRootPath;
+                        string fullImagePath = webRootPath + "/assets/img/";
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            await product.Image.CopyToAsync(memoryStream);
+                            using (var img = Image.FromStream(memoryStream))
+                            {
+                                int maxImageSize = 500;
+                                int maxThumbSize = 100;
+
+                                ImageUtility.ResizeImage(fullImagePath, product.ProductImage, img, maxImageSize, maxThumbSize);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    product.ProductImage = "noimage.png";
+                }
+
+                #endregion
+
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -121,8 +159,42 @@ namespace TechLight.UI.MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,Price,ProductDesc,UnitsInStock,StatusId,CategoryId,TraderId,RaidStatusId,ProductImage")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,Price,ProductDesc,UnitsInStock,StatusId,CategoryId,TraderId,RaidStatusId,ProductImage,Image")] Product product)
         {
+            #region File Upload - EDIT
+            string oldImageName = product.ProductImage;
+
+            if (product.Image != null)
+            {
+                string ext = Path.GetExtension(product.Image.FileName);
+                string[] validExts = { ".jpg", ".jpeg", ".gif", ".png" };
+
+                if (validExts.Contains(ext.ToLower()) && product.Image.Length < 4_194_303)
+                {
+                    product.ProductImage = Guid.NewGuid() + ext;
+                    string webRootPath = _webHostEnvironment.WebRootPath;
+                    string fullPath = webRootPath + "/assets/img/";
+
+                    if (oldImageName != "noimage.png")
+                    {
+                        ImageUtility.Delete(fullPath, oldImageName);
+                    }
+
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await product.Image.CopyToAsync(memoryStream);
+                        using (var img = Image.FromStream(memoryStream))
+                        {
+                            int maxImageSize = 500;
+                            int maxThumbSize = 100;
+                            ImageUtility.ResizeImage(fullPath, product.ProductImage, img, maxImageSize, maxThumbSize);
+
+                        }
+                    }
+                }
+            }
+            #endregion
+
             if (id != product.ProductId)
             {
                 return NotFound();

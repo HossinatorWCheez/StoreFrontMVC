@@ -21,9 +21,9 @@ namespace TechLight.DATA.EF.Models
         public int? RaidStatusId { get; set; }
         public string? ProductImage { get; set; }
 
-        public virtual Category Category { get; set; } = null!;
+        public virtual Category? Category { get; set; }
         public virtual RaidStatus? RaidStatus { get; set; }
-        public virtual Status Status { get; set; } = null!;
+        public virtual Status? Status { get; set; }
         public virtual Trader? Trader { get; set; }
         public virtual ICollection<ProductOrder> ProductOrders { get; set; }
     }

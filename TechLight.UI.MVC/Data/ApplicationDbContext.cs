@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using TechLight.UI.MVC.Models;
 
 namespace TechLight.UI.MVC.Data
 {
@@ -9,5 +10,6 @@ namespace TechLight.UI.MVC.Data
             : base(options)
         {
         }
+        public DbSet<TechLight.UI.MVC.Models.ContactViewModel>? ContactViewModel { get; set; }
     }
 }

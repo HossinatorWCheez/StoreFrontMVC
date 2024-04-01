@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TechLight.DATA.EF.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace TechLight.DATA.EF.Models
 {
@@ -22,7 +23,11 @@ namespace TechLight.DATA.EF.Models
     public partial class Customer { }
 
     [ModelMetadataType(typeof(ProductMetadata))]
-    public partial class Product { }
+    public partial class Product 
+    {
+        [NotMapped]
+        public IFormFile? Image { get; set; }
+    }
 
     [ModelMetadataType(typeof(ProductOrderMetadata))]
     public partial class ProductOrder { }
