@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using TechLight.DATA.EF.Models;
 
 namespace TechLight.UI.MVC.Areas.Identity.Pages.Account
 {
@@ -97,6 +98,15 @@ namespace TechLight.UI.MVC.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            public string CustomerId { get; set; } = null!;
+
+            [Required]
+            [StringLength(50)]
+            public string Username { get; set; } = null!;
+            public int? AccountLvl { get; set; }
+            public string? AccountRegion { get; set; }
+            public decimal? AccountRep { get; set; }
         }
 
 
@@ -123,6 +133,17 @@ namespace TechLight.UI.MVC.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
+
+                    TechLightContext _context = new TechLightContext();
+                    Customer userDetail = new Customer()
+                    {
+                        CustomerId = userId,
+                        Username = Input.Username
+                    };
+
+                    _context.Customers.Add(userDetail);
+                    _context.SaveChanges();
+
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(

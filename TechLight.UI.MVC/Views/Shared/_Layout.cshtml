@@ -1,4 +1,19 @@
-﻿@using Microsoft.AspNetCore.Identity;
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
+
+@{
+    bool cartHasProducts = false;
+    int productCount = 0;
+    if (!String.IsNullOrEmpty(Context.Session.GetString("cart")))
+    {
+        cartHasProducts = true;
+        var products = new Dictionary<int, CartItemViewModel>();
+        products = JsonConvert.DeserializeObject<Dictionary<int, CartItemViewModel>>(Context.Session.GetString("cart"));
+        productCount = products.Sum(p => p.Value.Qty);
+    }
+}
+
 @inject SignInManager<IdentityUser> signInManager
 
 <!DOCTYPE html>
@@ -98,7 +113,8 @@
                     }
                         
 
-                    <li><a href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a asp-action="Index" asp-controller="ShoppingCart"><sup>@productCount</sup><i class="fa-solid fa-cart-shopping"></i></a></li>
                     <partial name="_LoginPartial" />
                 </ul>
             </nav><!-- .navbar -->

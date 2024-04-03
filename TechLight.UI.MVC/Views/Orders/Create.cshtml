@@ -4,15 +4,22 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>@ViewData["Title"]</h1>
-<hr />
+<section class="product_section gray-section layout_padding pb-4 pt-4 mb-4 text-center">
+    <div class="heading_container heading_center">
+        <h2 class="fs-1">
+            Create a <span style="color: #feb900;">Order!</span>
+        </h2>
+    </div>
+</section>
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8 offset-2">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="CustomerId" class="control-label"></label>
-                <select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
+                <input asp-for="CustomerId" class="form-control" />
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OrderDate" class="control-label"></label>
@@ -25,16 +32,18 @@
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
             <div class="form-group pt-3">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to Orders</a>
+<div class="mb-3 mt-3 text-center">
+    <a asp-action="Index" class="btn btn-dark">Back to Orders</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

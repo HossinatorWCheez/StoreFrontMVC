@@ -1,35 +1,29 @@
 ﻿@model TechLight.DATA.EF.Models.Order
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Model.Customer.Username + " Details";
 }
 
-<h1>@ViewData["Title"]</h1>
+<section class="product_section gray-section layout_padding pb-4 pt-4 mb-4 text-center">
+    <div class="heading_container heading_center">
+        <h2 class="fs-1">
+            Details of <span style="color: #feb900;">@Model.Customer.Username</span>
+        </h2>
+    </div>
+</section>
 
-<div>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OrderDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OrderDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Customer)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Customer.CustomerId)
-        </dd>
-    </dl>
+<div class="row col-md-8 offset-4 text-justify">
+    <p class="h5">
+        <strong>@Html.DisplayNameFor(model => model.OrderDate):</strong> @Html.DisplayFor(model => model.OrderDate)
+    </p>
+    <p class="h5">
+        <strong>@Html.DisplayNameFor(model => model.Username):</strong> @Html.DisplayFor(model => model.Username)
+    </p>
+    <p class="h5">
+        <strong>@Html.DisplayNameFor(model => model.Customer):</strong> @Html.DisplayFor(model => model.Customer.CustomerId)
+    </p>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.OrderId">Edit</a> |
-    <a asp-action="Index">Back to Orders</a>
+<div class="text-center my-3">
+    <a asp-action="Edit" asp-route-id="@Model?.OrderId" class="btn btn-success">Edit</a>
+    <a asp-action="Index" class="btn btn-dark">Back to Orders</a>
 </div>

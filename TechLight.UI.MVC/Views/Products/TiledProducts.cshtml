@@ -26,13 +26,14 @@
             {
 
                 <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
-                    <div class="member-img">
-                        <img src="~/assets/img/team/team-1.jpg" class="img-fluid" alt="">
+                    <div class="member-img" style="border-radius: 15%;">
+                        <img src="~/assets/img/@item.ProductImage" class="img-fluid" alt="@item.ProductName">
                     </div>
                     <div class="member-info text-center">
                         <a asp-action="Details" asp-route-id="@item.ProductId"><h4>@item.ProductName</h4></a>
                         <span>@Html.DisplayFor(modelItem => item.Price)</span>
                         <p>@item.ProductDesc</p>
+                        <a asp-action="AddToCart" asp-controller="ShoppingCart" asp-route-id="@item.ProductId" class="btn btn-warning">Add To Cart</a> 
                     </div>
                 </div>
             }
