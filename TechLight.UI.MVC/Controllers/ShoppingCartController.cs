@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol;
 
-namespace GadgetStore.UI.MVC.Controllers
+namespace TechLight.UI.MVC.Controllers
 {
     public class ShoppingCartController : Controller
     {
