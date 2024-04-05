@@ -6,17 +6,18 @@
     ViewData["Title"] = "List Roles";
 }
 
-<h1>Roles</h1>
-
+<h1 class="text-center mb-5" style="color:#feb900;">Roles</h1>
 
 @if (Model.Any())
 {
-    <a class="btn btn-primary mb-3" style="width:auto" asp-action="CreateRole"
-   asp-controller="administration">Add new role</a>
+    <div class=" text-center">
+        <a class="btn btn-dark mb-3" style="width:auto" asp-action="CreateRole"
+       asp-controller="administration">Add new role</a>
+    </div>
 
     foreach (var role in Model)
     {
-        <div class="card mb-3">
+        <div class="card mb-3" style="--bs-card-bg: rgba(0, 0, 0, 0.4); color: #fff; --bs-card-border-color:#feb900;">
             <div class="card-header">
                 Role Id : @role.Id
             </div>
@@ -26,7 +27,7 @@
             <div class="card-footer">
 
                 <form asp-action="DeleteRole" asp-route-id="@role.Id" method="post">
-                    <a asp-controller="Administration" asp-action="EditRole" asp-route-id="@role.Id" class="btn btn-primary">Edit</a>
+                    <a asp-controller="Administration" asp-action="EditRole" asp-route-id="@role.Id" class="btn btn-warning">Edit</a>
                     <span id="confirmDeleteSpan_@role.Id" style="display:none">
                         <span>Are you sure you want to delete?</span>
                         <button type="submit" class="btn btn-danger">Yes</button>
