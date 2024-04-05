@@ -39,11 +39,19 @@
             <td>
             @if (User.IsInRole("Admin"))
             {
-                <span><a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |</span>
-                <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-warning">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.CategoryId" class="btn btn-danger">Delete</a>
             }
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('table').DataTable();
+        });
+    </script>
+}

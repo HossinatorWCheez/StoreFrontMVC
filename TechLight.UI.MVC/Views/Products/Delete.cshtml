@@ -17,13 +17,13 @@
 
 <div class="row mb-3">
     <div class="col-md-6 text-center">
-        <img src="~/images/@Model.ProductImage" alt="@Model.ProductName" longdesc="@Model.ProductDesc" class="img-fluid" />
+        <img src="~/assets/img/@Model.ProductImage" alt="@Model.ProductName" longdesc="@Model.ProductDesc" class="img-fluid" />
         <p class="text-info mt-3">
             @Html.DisplayFor(model => model.ProductDesc)
         </p>
     </div>
 
-    <div class="col-md-4 offset-1">
+    <div class="col-md-4 offset-1" id="product-details">
         <p class="h5">
             <strong>@Html.DisplayNameFor(mode => Model.Price):</strong> @Html.DisplayFor(model => model.Price)
         </p>

@@ -61,10 +61,18 @@
                 @Html.DisplayFor(modelItem => item.Phone)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.TraderId">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.TraderId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.TraderId" class="btn btn-warning">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.TraderId" class="btn btn-danger">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('table').DataTable();
+        });
+    </script>
+}
