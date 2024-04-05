@@ -9,6 +9,7 @@ using TechLight.DATA.EF.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Drawing;
 using TechLight.UI.MVC.Utilities;
+using X.PagedList;
 
 namespace TechLight.UI.MVC.Controllers
 {
@@ -37,14 +38,69 @@ namespace TechLight.UI.MVC.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> TiledProducts()
+        public async Task<IActionResult> TiledProducts(string searchTerm, int categoryId = 0, int page = 1)
         {
+            int pageSize = 6;
+
             var products = _context.Products
                 .Include(p => p.Category)
                 .Include(p => p.RaidStatus)
                 .Include(p => p.Status)
-                .Include(p => p.Trader);
+                .Include(p => p.Trader).ToList();
+
+            #region Optional Category Filter
+
+            //Create a ViewData object to send a list of categories View
+            //This is similar to what gets scaffolded in Products/Create()
+            ViewData["categoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
+            ViewBag.Category = 0;
+
+            //At this point we need to add int categoryId as a parameter to the TiledProducts() Action
+            if (categoryId != 0)
+            {
+                products = products.Where(p => p.CategoryId == categoryId).ToList();
+
+                ViewData["categoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", categoryId);
+                ViewBag.Category = categoryId;
+            }
+            #endregion
+
+            #region Optional Search Filter
+
+            if (!String.IsNullOrEmpty(searchTerm))
+            {
+                //In these scopes, there IS a searchTerm
+                products = products.Where(p =>
+                p.ProductName.ToLower().Contains(searchTerm.ToLower()) ||
+                p.Category.CategoryName.ToLower().Contains(searchTerm.ToLower()) ||
+                p.Trader.TraderName.ToLower().Contains(searchTerm.ToLower()) ||
+                p.ProductDesc.ToLower().Contains(searchTerm.ToLower())).ToList();
+
+                //ViewBag for total # of results 
+                ViewBag.NbrResults = products.Count;
+                //ViewBag for repeating user's search term
+                ViewBag.SearchTerm = searchTerm;
+            }
+            else
+            {
+                ViewBag.NbrResults = null;
+                ViewBag.SearchTerm = null;
+            }
+
+            #endregion
+
+            return View(products.ToPagedList(page, pageSize));
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Discontinued()
+        {
+            var products = _context.Products.Where(p => p.Status.StatusId == 4)
+                .Include(p => p.Category)
+                .Include(p => p.Trader)
+                .Include(p => p.ProductOrders);
             return View(await products.ToListAsync());
+            //To create the view, right click the Action -> Add View (Choose List template)
         }
 
         // GET: Products/Details/5
@@ -94,7 +150,6 @@ namespace TechLight.UI.MVC.Controllers
                 if (product.Image != null)
                 {
                     string ext = Path.GetExtension(product.Image.FileName);
-
                     string[] validExts = { ".jpg", ".jpeg", ".gif", ".png" };
 
                     if (validExts.Contains(ext.ToLower()) && product.Image.Length < 4_194_303)

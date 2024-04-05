@@ -252,6 +252,7 @@ section {
   top: 0;
   left: 0;
   right: 0;
+  background: transparent !important;
 }
 
 .header .logo img {
@@ -2558,7 +2559,7 @@ section {
 --------------------------------------------------------------*/
 .footer {
   color: #fff;
-  background: url("../img/footer-bg.jpg") top center no-repeat;
+  background: url("../img/eft.jpg") top center no-repeat;
   background-size: cover;
   font-size: 14px;
   padding: 80px 0 60px 0;
@@ -2679,10 +2680,114 @@ form input[type="submit"].btn-sm {
 
 sup {
     color: white;
-    background-color: darkslategray;
-    border-radius: 50%;
+    background-color: #feb900;
+    border-radius: 60%;
     display: inline-block;
     height: 1em;
     padding: 1em;
     text-align: center;
+}
+
+body {
+    background: url("../img/eft-background.jpg")
+}
+
+/* */
+label {
+    color: #feb900;
+    padding-left: 10px;
+}
+
+div.dt-container .dt-info, div.dt-container .dt-processing, div.dt-container .dt-paging {
+    color: #feb900;
+}
+
+div.dt-container .dt-paging .dt-paging-button.current, div.dt-container .dt-paging .dt-paging-button.current:hover {
+    color: inherit !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-color: #feb900;
+    background: linear-gradient(to bottom, rgba(230, 230, 230, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%);
+}
+
+div.dt-container .dt-paging .dt-paging-button.disabled, div.dt-container .dt-paging .dt-paging-button.disabled:hover, div.dt-container .dt-paging .dt-paging-button.disabled:active {
+    cursor: default;
+    color: #feb900 !important;
+    border: 1px solid transparent;
+    border-color: #feb900;
+    background: transparent;
+    box-shadow: none;
+}
+
+div.dt-container .dt-input {
+    border: 1px solid #feb900;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: gray;
+    color: #fff;
+}
+
+div.dt-container .dt-search input {
+    border: 1px solid #feb900;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: rgba(128, 128, 128, .2);
+    color: #fff;
+    margin-left: 3px;
+}
+
+.btn-info {
+    --bs-btn-bg: #b02a37;
+    --bs-btn-color: #fff;
+    --bs-btn-border-color: #b02a37;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #dc3545 ;
+    --bs-btn-hover-border-color: #dc3545;
+}
+
+h2.fs-1 {
+    color: lightgray;
+}
+
+p.h5 {
+    color: #feb900;
+}
+
+#product-details {
+    background: rgba(0, 0, 0, 0.3);
+    height: 143px;
+}
+
+a.nav-link {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+button.nav-link {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+div.row.col-md-8.offset-4.text-justify {
+    background: rgba(0, 0, 0, 0.5);
+    width: 35%;
+}
+
+div div.form-group {
+    padding-bottom: 15px;
+}
+
+div div.form-group input {
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+}
+
+div div.form-group select {
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff
+}
+
+th {
+    background: rgba(0, 0, 0, 0.99) !important;
+}
+
+td {
+    background: rgba(0, 0, 0, 0.8) !important;
 }
