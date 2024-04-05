@@ -8,10 +8,10 @@
 <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/breadcrumbs-bg.jpg');">
-        <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+    <div class="breadcrumbs d-flex align-items-center">
+        <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade" id="contact-bread">
 
-            <h2>Contact</h2>
+            <h2 style="color: #feb900;">Contact</h2>
             <ol>
                 <li><a href="index.html">Home</a></li>
                 <li>Contact</li>
@@ -20,11 +20,11 @@
         </div>
     </div><!-- End Breadcrumbs -->
     <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact" style="background-color: rgba(0, 0, 0, 0.6);">
         <div class="container" data-aos="fade-up" data-aos-delay="100">
 
             <div class="row gy-4">
-                <div class="col-lg-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="info-item  d-flex flex-column justify-content-center align-items-center">
                         <i class="bi bi-map"></i>
                         <h3>Our Address</h3>
@@ -32,7 +32,7 @@
                     </div>
                 </div><!-- End Info Item -->
 
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="info-item d-flex flex-column justify-content-center align-items-center">
                         <i class="bi bi-envelope"></i>
                         <h3>Email Us</h3>
@@ -40,7 +40,7 @@
                     </div>
                 </div><!-- End Info Item -->
 
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="info-item  d-flex flex-column justify-content-center align-items-center">
                         <i class="bi bi-telephone"></i>
                         <h3>Call Us</h3>
@@ -58,14 +58,14 @@
 
                 <div class="col-lg-6">
                     <div class="row gy-4">
-                        <form asp-action="Contact">
+                        <form asp-action="Contact" id="contact-form">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <div class="form-group col-lg-6">
+                            <div class="form-group">
                                 <label asp-for="Name" class="control-label"></label>
                                 <input asp-for="Name" class="form-control" id="name" placeholder="Your Name" required />
                                 <span asp-validation-for="Name" class="text-danger"></span>
                             </div>
-                            <div class="form-group col-lg-6">
+                            <div class="form-group">
                                 <label asp-for="Email" class="control-label"></label>
                                 <input asp-for="Email" class="form-control" id="email" placeholder="Your Email" required />
                                 <span asp-validation-for="Email" class="text-danger"></span>
@@ -80,7 +80,7 @@
                                 <input asp-for="Message" class="form-control" placeholder="Message" required />
                                 <span asp-validation-for="Message" class="text-danger"></span>
                             </div>
-                            <div class="form-group text-center mt-lg-5">
+                            <div class="form-group">
                                 <input type="submit" value="Send" class="btn btn-success" />
                             </div>
                         </form>
@@ -93,10 +93,6 @@
     </section><!-- End Contact Section -->
 
 </main><!-- End #main -->
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

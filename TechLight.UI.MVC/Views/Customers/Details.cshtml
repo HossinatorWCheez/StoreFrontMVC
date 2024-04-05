@@ -4,39 +4,33 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<section class="product_section gray-section layout_padding pb-4 pt-4 mb-4 text-center">
+    <div class="heading_container heading_center">
+        <h2 class="fs-1">
+            Details of <span style="color: #feb900;">@Model.Username</span>
+        </h2>
+    </div>
+</section>
 
 <div>
-    <h4>Customer</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AccountLvl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AccountLvl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AccountRegion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AccountRegion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AccountRep)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AccountRep)
-        </dd>
-    </dl>
+    <div>
+        <div class="col-md-4 offset-4" id="product-details">
+            <p class="h5">
+                <strong>@Html.DisplayNameFor(model => model.Username):</strong> @Html.DisplayFor(model => model.Username)
+            </p>
+            <p class="h5">
+                <strong>@Html.DisplayNameFor(model => model.AccountLvl):</strong> @Html.DisplayFor(model => model.AccountLvl)
+            </p>
+            <p class="h5">
+                <strong>@Html.DisplayNameFor(model => model.AccountRegion):</strong> @Html.DisplayFor(model => model.AccountRegion)
+            </p>
+            <p class="h5">
+                <strong>@Html.DisplayNameFor(model => model.AccountRep):</strong> @Html.DisplayFor(model => model.AccountRep)
+            </p>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.CustomerId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="text-center my-3">
+    <a asp-action="Edit" asp-route-id="@Model?.CustomerId" class="btn btn-success">Edit</a>
+    <a asp-action="Index" class="btn btn-dark">Back to List</a>
 </div>

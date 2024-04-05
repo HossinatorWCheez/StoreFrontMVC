@@ -26,9 +26,9 @@
                     <select name="categoryId" class="form-control text-center mb-3" asp-items="ViewBag.CategoryId">
                         <option value="0">[Choose a Category]</option>
                     </select>
-
+                    <label for="searchTerm" class="control-label d-block text-center">Search by Product</label>
                     <input name="searchTerm" class="form-control text-center mb-3" placeholder="Search Gadgets" />
-                    <input type="submit" value="Go" class="btn btn-primary text-center w-50 d-block mx-auto" />
+                    <input type="submit" value="Search" class="btn btn-success text-center w-30 d-block mx-auto" />
                 </form>
 
                 @if (ViewBag.NbrResults != null)
@@ -49,13 +49,13 @@
             @foreach (var item in Model)
             {
 
-                <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-3 offset-1 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
                     <div class="member-img" style="border-radius: 15%;">
                         <img src="~/assets/img/@item.ProductImage" class="img-fluid" alt="@item.ProductName">
                     </div>
                     <div class="member-info text-center">
-                        <a asp-action="Details" asp-route-id="@item.ProductId"><h4>@item.ProductName</h4></a>
-                        <span>@Html.DisplayFor(modelItem => item.Price)</span>
+                        <a asp-action="Details" asp-route-id="@item.ProductId" class="p-info"><h4>@item.ProductName</h4></a>
+                        <span class="p-info">@Html.DisplayFor(modelItem => item.Price)</span>
                         <p>@item.ProductDesc</p>
                         <a asp-action="AddToCart" asp-controller="ShoppingCart" asp-route-id="@item.ProductId" class="btn btn-warning">Add To Cart</a> 
                     </div>

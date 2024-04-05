@@ -121,8 +121,7 @@ section {
 }
 
 .breadcrumbs:before {
-  content: "";
-  background-color: rgba(0, 0, 0, 0.6);
+  content: "";  
   position: absolute;
   inset: 0;
 }
@@ -1348,14 +1347,14 @@ section {
   font-weight: 700;
   margin-bottom: 6px;
   font-size: 18px;
-  color: var(--color-secondary);
+  color: #fff;
 }
 
 .team .member .member-info span {
   font-style: italic;
   display: block;
   font-size: 15px;
-  color: #838893;
+  color: #fff;
   margin-bottom: 10px;
 }
 
@@ -1651,7 +1650,7 @@ section {
 
 .contact .info-item h3 {
   font-size: 20px;
-  color: #6c757d;
+  color: #fff;
   font-weight: 700;
   margin: 10px 0;
 }
@@ -2692,7 +2691,6 @@ body {
     background: url("../img/eft-background.jpg")
 }
 
-/* */
 label {
     color: #feb900;
     padding-left: 10px;
@@ -2790,4 +2788,77 @@ th {
 
 td {
     background: rgba(0, 0, 0, 0.8) !important;
+}
+
+form#contact-form input.form-control{
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+}
+form#contact-form label.control-label{
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+}
+
+div.info-item {
+    color: #feb900;
+}
+div.info-item h3 {
+    color: #fff;
+}
+
+div#contact-bread {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 30px;
+    width: 468px;
+}
+
+select.form-control.text-center.mb-3 {
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+}
+
+input.form-control.text-center.mb-3 {
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+}
+
+section.product_section {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 30px;
+}
+
+section#team{
+    padding-right: 90px;
+}
+
+div.member {
+    background: rgba(0, 0, 0, 0.7);
+    color: #feb900;
+    border-radius: 30px;
+}
+
+input.form-control {
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+}
+
+label::after {
+    color: #fff !important;
+    background: none !important;
+}
+
+label[for="Input_Email"] {
+    color: #feb900 !important;
+}
+
+label[for="Input_Password"] {
+    color: #feb900 !important;
+}
+
+label[for="Input_ConfirmPassword"] {
+    color: #feb900 !important;
+}
+
+label[for="Input_Username"] {
+    color: #feb900 !important;
 }

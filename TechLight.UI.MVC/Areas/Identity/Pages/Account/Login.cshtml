@@ -5,12 +5,12 @@
     ViewData["Title"] = "Log in";
 }
 
-<h1 class="text-center">@ViewData["Title"]</h1>
+<h1 class="text-center" style="color: #feb900;">@ViewData["Title"]</h1>
 <div class="row">
     <div class="col-md-8 offset-2">
         <section>
             <form id="account" method="post">
-                <h2>Use a local account to log in.</h2>
+                <h2 style="color: #fff;">Use a local account to log in.</h2>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-floating mb-3">
@@ -34,15 +34,15 @@
                 <div>
                     <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-success text-center">Log in</button>
                 </div>
-                <div class="text-center">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                <div class="text-center mt-3">
+                    <p class="d-inline-block">
+                        <a id="forgot-password" asp-page="./ForgotPassword" class="btn btn-danger mx-2">Forgot your password?</a>
                     </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    <p class="d-inline-block">
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-warning">Register as a new user</a>
                     </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    <p class="d-inline-block">
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" class="btn btn-primary mx-2">Resend email confirmation</a>
                     </p>
                 </div>
             </form>
