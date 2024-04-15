@@ -103,27 +103,41 @@ namespace TechLight.UI.MVC.Controllers
             //To create the view, right click the Action -> Add View (Choose List template)
         }
 
-        // GET: Products/Details/5
+        //// GET: Products/Details/5
+        //[AllowAnonymous]
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null || _context.Products == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var product = await _context.Products
+        //        .Include(p => p.Category)
+        //        .Include(p => p.RaidStatus)
+        //        .Include(p => p.Status)
+        //        .Include(p => p.Trader)
+        //        .FirstOrDefaultAsync(m => m.ProductId == id);
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(product);
+        //}
+
         [AllowAnonymous]
-        public async Task<IActionResult> Details(int? id)
+        public PartialViewResult AjaxDetails(int id)
         {
-            if (id == null || _context.Products == null)
-            {
-                return NotFound();
-            }
+            var product = _context.Products.Find(id);
+            return PartialView(product);
 
-            var product = await _context.Products
-                .Include(p => p.Category)
-                .Include(p => p.RaidStatus)
-                .Include(p => p.Status)
-                .Include(p => p.Trader)
-                .FirstOrDefaultAsync(m => m.ProductId == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
+            //AJAX - STEP 13
+            //Right-click the AjaxDetails Action -> Add View -> Razor View
+            //Template: Details
+            //Model: Category
+            //Context: GadgetStoreContext
+            //Check 'Create as partial view'
         }
 
         // GET: Products/Create

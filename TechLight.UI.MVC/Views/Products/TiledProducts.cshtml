@@ -54,7 +54,7 @@
                         <img src="~/assets/img/@item.ProductImage" class="img-fluid" alt="@item.ProductName">
                     </div>
                     <div class="member-info text-center">
-                        <a asp-action="Details" asp-route-id="@item.ProductId" class="p-info"><h4>@item.ProductName</h4></a>
+                        <a class="DetailsLink" id="@item.ProductId" data-bs-toggle="modal" data-bs-target="#ProductDetails">@item.ProductName</a>
                         <span class="p-info">@Html.DisplayFor(modelItem => item.Price)</span>
                         <p>@item.ProductDesc</p>
                         <a asp-action="AddToCart" asp-controller="ShoppingCart" asp-route-id="@item.ProductId" class="btn btn-warning">Add To Cart</a> 
@@ -74,3 +74,26 @@
 
     </div>
 </section>
+
+<div class="modal fade" id="ProductDetails" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+            </div>
+            <div class="modal-body" id="DetailsBody"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(".DetailsLink").on("click", function (e) {
+            let prodId = $(this).attr("id");
+            $("#DetailsBody").load("/Products/AjaxDetails/" + prodId)
+        })
+    </script>
+}
